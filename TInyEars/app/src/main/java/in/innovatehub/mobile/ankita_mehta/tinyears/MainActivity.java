@@ -2,8 +2,7 @@ package in.innovatehub.mobile.ankita_mehta.tinyears;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -28,6 +27,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity
         super.onStart();
         //setContentView(R.layout.activity_main);
         Log.d(TAG, "Inside on start");
+       // setContentView(R.layout.activity_main);
     }
 
     @Override
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         super.onRestart();
        // setContentView(R.layout.activity_main);
         Log.d(TAG, "Inside on Restart");
+      //  setContentView(R.layout.activity_main);
     }
 
 
@@ -106,10 +108,17 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
+            Log.d(TAG, "Inside on onNavigationItemSelected, Navigating to Main Activity!");
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Log.d(TAG, "Inside on onNavigationItemSelected, Navigating to Record Activity!");
+            Intent intent = new Intent(getApplicationContext(), RecordActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
-
+            Log.d(TAG, "Inside on onNavigationItemSelected, Navigating to Results Activity!");
+            Intent intent = new Intent(getApplicationContext(), ResultsScreenActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {

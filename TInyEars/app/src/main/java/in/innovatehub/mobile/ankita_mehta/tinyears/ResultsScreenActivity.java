@@ -1,9 +1,11 @@
 package in.innovatehub.mobile.ankita_mehta.tinyears;
 
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,6 +35,8 @@ public class ResultsScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_screen);
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         String message = intent.getStringExtra(RecordActivity.Result_MESSAGE);
         mResultText = (TextView) findViewById(R.id.ResultsMessage);
@@ -40,13 +44,12 @@ public class ResultsScreenActivity extends AppCompatActivity {
 
         Log.d(TAG, message);
 
-
         mAC = (ImageView) findViewById(R.id.imageViewACRS);
         mFan = (ImageView) findViewById(R.id.imageViewFanRS);
         mMW = (ImageView) findViewById(R.id.imageViewMWRS);
         mHmn = (ImageView) findViewById(R.id.imageViewHumanRS);
 
-        FAN = true;
+      //  FAN = true;
 
         // Check whether we're recreating a previously destroyed instance
         if (savedInstanceState != null) {
@@ -57,7 +60,6 @@ public class ResultsScreenActivity extends AppCompatActivity {
             HMN = savedInstanceState.getBoolean(STATE_HMN);
         } else {
             // Probably initialize members with default values for a new instance
-
             if(message.contains("AC")){
                 AC = true;
             }
@@ -73,7 +75,7 @@ public class ResultsScreenActivity extends AppCompatActivity {
         }
 
         if(!(AC)&&!(MW)&&!(FAN)&&!(HMN)){
-            mResultText.setText("No Device on.. all silent");
+            mResultText.setText(message);
         }
         if(AC){
             mAC.setVisibility(View.VISIBLE);
@@ -87,6 +89,17 @@ public class ResultsScreenActivity extends AppCompatActivity {
         if(HMN){
             mHmn.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

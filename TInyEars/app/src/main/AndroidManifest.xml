@@ -13,21 +13,31 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!-- This is a splash screen which comes in first time activity starts-->
         <activity
             android:name=".MainSplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RecordActivity" />
-        <activity android:name=".ResultsScreenActivity"></activity>
+        <activity android:name=".RecordActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ResultsScreenActivity"
+            android:parentActivityName=".RecordActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".RecordActivity" />
+
+        </activity>
     </application>
 
 </manifest>

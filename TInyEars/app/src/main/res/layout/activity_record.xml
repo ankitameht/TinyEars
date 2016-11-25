@@ -19,6 +19,11 @@
         android:orientation="vertical"
         android:gravity="center">
 
+        <TextView
+            android:id="@+id/stopCountTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="100dp"
